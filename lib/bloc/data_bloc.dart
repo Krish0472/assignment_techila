@@ -1,6 +1,6 @@
 import 'package:applicatio01statemanagment/bloc/data_event.dart';
 import 'package:applicatio01statemanagment/bloc/data_state.dart';
-import 'package:applicatio01statemanagment/repo/apirepo.dart';
+import 'package:applicatio01statemanagment/repo/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/product.dart';
@@ -25,7 +25,10 @@ class DataBloc extends Bloc<DataEvent,DataState> {
   
   void _AddToCart(AddToCartEvent event ,Emitter<DataState> emit) async{
     emit(LoadingState());
-    emit(CartState(repo.addToCart(event.product) as List<Product>));
+    emit(CartState(repo.addToCart(event.product) as List<Product>,0));
   }
+
+
+
 
 }

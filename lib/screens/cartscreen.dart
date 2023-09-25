@@ -1,10 +1,12 @@
-import 'package:applicatio01statemanagment/bloc/car_bloc.dart';
+import 'package:applicatio01statemanagment/bloc/cart_bloc.dart';
 import 'package:applicatio01statemanagment/bloc/data_event.dart';
 import 'package:applicatio01statemanagment/bloc/data_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'mycatacalog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'detailscreen.dart';
+import 'listscreen.dart';
 
 class MyCart extends StatefulWidget {
   @override
@@ -14,139 +16,154 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+
   late bool isDisable;
   late CartBloc cbloc = BlocProvider.of<CartBloc>(context);
 
 
   @override
-  void initState() {
+  void initState(){
     isDisable = false;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // provider = Provider.of<DataProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: BackButton(
-          color: Colors.black,
-          onPressed: () => Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => MyCataLog())),
-        ),
-        title: Text(
-          'Shopping Cart',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
         child: BlocConsumer<CartBloc, DataState>(
           builder: (BuildContext context, state) {
-            return Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.lightBlueAccent, Colors.white])),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: state.productListCart.length,
-                itemBuilder: (context, int index) {
-                  return Slidable(
-                    endActionPane: ActionPane(
-                      motion: BehindMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            cbloc.add(RemoveProduct(state.productListCart[index]));
-                           // context.read<CartBloc>().add(DeleteToCart(state.products));
-                            print('product deleted successfull thanks ');
-                            //data.delFromCart(data.productList[index]);
-                          },
-                          backgroundColor: Colors.red,
-                          icon: Icons.delete,
-                          label: 'delete',
+            return Column(
+                children: [
+              Expanded(
+                child: SizedBox(height: 490,
+                  child: ListView.builder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: state.productListCart.length,
+                    itemBuilder: (context, int index) {
+                      return Slidable(
+                        endActionPane: ActionPane(
+                          motion: BehindMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (context) {
+                                cbloc.add(
+                                    RemoveProduct(state.productListCart[index]));
+                              },
+                              backgroundColor: Colors.red,
+                              icon: Icons.delete,
+                              label: 'delete',
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    startActionPane: ActionPane(
-                      motion: BehindMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            // Navigator.pushReplacement(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => DetailPage(
-                            //             productDetail:
-                            //             data.products[index])));
-                          },
-                          backgroundColor: Colors.green,
-                          icon: Icons.details,
-                          label: 'Detils',
-                        )
-                      ],
-                    ),
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          side: BorderSide(color: Colors.black, width: 3.0)),
-                      leading: SizedBox(
-                          height: 45,
-                          width: 45,
-                          child: Image(
-                              image: NetworkImage(
-                                  state.productListCart[index].thumbnail),
-                              fit: BoxFit.fill)),
-                      title: Row(
-                        children: [
-                          Flexible(
-                              child: Text(state.productListCart[index].title)),
-                        ],
-                      ),
-                      subtitle: Row(
-                        children: [
-                          Flexible(
-                            child: Text(
-                                'total:${state.productListCart[index].price.toDouble() * state.productListCart[index].quantity!.toDouble()}'),
-                          ),
-                          Padding(padding: EdgeInsets.only(left: 2.0)),
-                          IconButton(
-                              onPressed: () {
-                                if (state.productListCart[index].quantity !=
-                                    0) {
-
-                                  // state.qtyRemove(state.productList[index].id);
-                                } else {
-                                  isDisable = true;
-                                  //state.delFromCart(state.productList[index]);
-                                }
+                        startActionPane: ActionPane(
+                          motion: BehindMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (context) {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailPage(
+                                            productDetail:
+                                            state.productListCart [index])
+                                    )
+                                );
                               },
-                              icon: Icon(Icons.remove)),
-                          Padding(
-                            padding: EdgeInsets.only(left: 2.0),
+                              backgroundColor: Colors.green,
+                              icon: Icons.details,
+                              label: 'Detils',
+                            )
+                          ],
+                        ),
+                        child: ListTile(
+                          leading: SizedBox(
+                              height: 100,
+                              width: 60,
+                              child: Image(
+                                  image: NetworkImage(
+                                      state.productListCart[index].thumbnail),
+                                  fit: BoxFit.fill)),
+                          title: Row(
+                            children: [
+                              const SizedBox(width: 30.0,),
+                              Flexible(
+                                child:
+                                Text(state.productListCart[index].title,style: const TextStyle(fontWeight: FontWeight.bold),),
+                              ), ],
                           ),
-                          Text('qty:${state.productListCart[index].quantity}'),
-                          Padding(padding: EdgeInsets.only(left: 2.0)),
-                          IconButton(
-                              onPressed: () {
-                                //state.addQuantity(state.productList[index].id);
-                              },
-                              icon: Icon(Icons.add)),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                          subtitle: Row(
+                            children: [
+                              const SizedBox(width: 30.0,),
+                              Flexible(
+                                child: Text(
+                                  'Total:${state.productListCart[index].price.toDouble() * state.productListCart[index].quantity!.toDouble()}',style: const TextStyle(fontWeight: FontWeight.bold),),
+                              ),
+                              const Padding(padding: EdgeInsets.only(left: 2.0)),
+                              IconButton(
+                                  onPressed: () {
+                                    if (state.productListCart[index].quantity != 0) {
+                                      cbloc.add(DecreaseProductQuantity(state.productListCart[index].id));
+                                    } else{
+                                      cbloc.add(
+                                          RemoveProduct(state.productListCart[index]));
+                                      isDisable = true;
+                                    }
+                                  },
+                                  icon: const Icon(Icons.remove)),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 1.0),
+                              ),
+                              Text(
+                                'Qty:${state.productListCart[index].quantity}',style: TextStyle(fontWeight: FontWeight.bold),),
+                              const Padding(padding: EdgeInsets.only(left: 2.0)),
+                              IconButton(
+                                  onPressed: () {
+                                    cbloc.add(IncrementProductQuantity(state.productListCart[index].id));
+                                  },
+                                  icon: const Icon(Icons.add)),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
+              SizedBox(height: 20.0,
+                child: Row(
+                  children: [
+                    Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          'Total Bill',
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                        )),
+                    Expanded(
+                      child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            '\u{20B9}${context.read<CartBloc>().state.totalBill}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            ]
             );
           },
-          listener: (BuildContext context, state) {
-
-          },
+          listener: (BuildContext context, state) {},
         ),
       ),
     );
+
   }
 }
 
@@ -310,15 +327,15 @@ Consumer<DataProvider>(builder: (context, data, child) {
 
 /*
 import 'package:applicatio01statemanagment/models/product.dart';
-import 'package:applicatio01statemanagment/screens/login_page.dart';
-import 'package:applicatio01statemanagment/screens/detail.dart';
+import 'package:applicatio01statemanagment/screens/loginscreen.dart';
+import 'package:applicatio01statemanagment/screens/detailscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../providers/providers/provider_page.dart';
-import 'mycatacalog.dart';
+import 'listscreen.dart';
 
 class MyCart extends StatefulWidget {
   @override

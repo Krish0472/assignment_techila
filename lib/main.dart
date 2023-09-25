@@ -1,22 +1,25 @@
-import 'package:applicatio01statemanagment/bloc/car_bloc.dart';
+import 'package:applicatio01statemanagment/bloc/cart_bloc.dart';
 import 'package:applicatio01statemanagment/bloc/data_bloc.dart';
-import 'package:applicatio01statemanagment/bloc/loginbloc.dart';
-import 'package:applicatio01statemanagment/repo/apirepo.dart';
-import 'package:applicatio01statemanagment/screens/login_page.dart';
+import 'package:applicatio01statemanagment/bloc/login_bloc.dart';
+import 'package:applicatio01statemanagment/bloc/observer.dart';
+import 'package:applicatio01statemanagment/repo/repository.dart';
+import 'package:applicatio01statemanagment/screens/loginscreen.dart';
 import 'package:applicatio01statemanagment/providers/providers/provider_page.dart';
-import 'package:applicatio01statemanagment/screens/mycatacalog.dart';
-import 'package:applicatio01statemanagment/screens/splash.dart';
+import 'package:applicatio01statemanagment/screens/listscreen.dart';
+import 'package:applicatio01statemanagment/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  Bloc.observer = MyGlobalObserver();
+
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget{
   final Repo repo = Repo();
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget{
                      BlocProvider<LoginBloc>(create: (context)=> LoginBloc()),
         ],
 
-        child: MaterialApp(
+        child: MaterialApp(darkTheme: ThemeData.dark(useMaterial3: true),
           debugShowCheckedModeBanner: false,
           home: SplashScreen(),
         ),

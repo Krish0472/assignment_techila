@@ -1,3 +1,4 @@
+import 'package:applicatio01statemanagment/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LoginEvent extends Equatable {
@@ -6,6 +7,7 @@ abstract class LoginEvent extends Equatable {
 
 
 class LoginButtonPressedEvent extends LoginEvent {
+
   final String username;
   final String password;
 

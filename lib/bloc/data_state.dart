@@ -6,8 +6,11 @@ abstract class DataState extends Equatable {
   Product get prod => products;
   List<Product> productListCart =[];
 
+  num totalBill =0;
+  num get _totalBill =>totalBill;
+
   @override
-  List<Object?> get props => [products,productListCart];
+  List<Object?> get props => [productListCart,_totalBill];
 }
 
 class InitialState extends DataState{}
@@ -31,12 +34,36 @@ class CartLoaded extends DataState {
   List<Object> get props => [product];
 }
 class CartState extends DataState{
+  @override
+  num totalBill;
   List<Product> productListCart =[];
-  CartState(this.productListCart);
+
+  CartState(this.productListCart,this.totalBill);
+
 }
+
+
 
 class ProductDeletedFromCartState extends DataState{
  final List<Product> productListCart;
- ProductDeletedFromCartState(this.productListCart);
+ @override
+ num totalBill;
+ ProductDeletedFromCartState(this.productListCart,this.totalBill);
+
+}
+
+class IncrementQty extends DataState{
+  final List<Product> productQuantities;
+  IncrementQty(this.productQuantities);
+  @override
+  List<Object> get props => [productQuantities];
+
+}
+
+class DecrementQty extends DataState{
+  final List<Product> productQuantities;
+  DecrementQty(this.productQuantities);
+  @override
+  List<Object> get props => [productQuantities];
 
 }

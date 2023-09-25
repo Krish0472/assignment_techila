@@ -8,6 +8,8 @@ abstract class DataEvent extends Equatable {
 }
 
 class FetchDataEvent extends DataEvent{}
+
+
 class AddToCartEvent extends DataEvent{
   @override
   List<Object> get props => [product];
@@ -22,6 +24,29 @@ class RemoveProduct extends DataEvent {
 
   @override
   List<Object> get props => [product];
+}
+
+class CartTotalEvent extends DataEvent{
+  num _totalAmount =0;
+  num get totalAmount => _totalAmount;
+  CartTotalEvent(this._totalAmount);
+}
+
+class IncrementProductQuantity extends DataEvent {
+  final int productId;
+
+   IncrementProductQuantity(this.productId);
+
+  @override
+  List<Object> get props => [productId];
+}
+class DecreaseProductQuantity extends DataEvent {
+  final int productId;
+
+  DecreaseProductQuantity(this.productId);
+
+  @override
+  List<Object> get props => [productId];
 }
 
 // class RemoveProduct extends DataEvent {

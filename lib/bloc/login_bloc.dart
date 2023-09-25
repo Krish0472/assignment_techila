@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:applicatio01statemanagment/bloc/loginEvent.dart';
-import 'package:applicatio01statemanagment/bloc/loginstate.dart';
+import 'package:applicatio01statemanagment/bloc/login_event.dart';
+import 'package:applicatio01statemanagment/bloc/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent,LoginState>{

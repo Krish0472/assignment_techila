@@ -24,7 +24,7 @@ class Product {
   num? discountPercentage;
   num? discountedPrice;
   String? brand;
-  String? category;
+  String category;
   String? description;
   num? rating;
   int id;
@@ -40,7 +40,7 @@ class Product {
         this.discountPercentage,
         this.discountedPrice,
         this.brand,
-        this.category,
+        required this.category,
         this.description,
         this.rating,
         required this.id,
