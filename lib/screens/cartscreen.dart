@@ -135,7 +135,7 @@ class _MyCartState extends State<MyCart> {
               SizedBox(height: 20.0,
                 child: Row(
                   children: [
-                    Align(
+                    const Align(
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           'Total Bill',
@@ -147,7 +147,7 @@ class _MyCartState extends State<MyCart> {
                           alignment: Alignment.bottomRight,
                           child: Text(
                             '\u{20B9}${context.read<CartBloc>().state.totalBill}',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold),

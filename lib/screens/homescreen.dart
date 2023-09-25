@@ -3,6 +3,7 @@ import 'package:applicatio01statemanagment/bloc/data_state.dart';
 import 'package:applicatio01statemanagment/models/product.dart';
 import 'package:applicatio01statemanagment/screens/splashscreen.dart';
 import 'package:applicatio01statemanagment/screens/userdetail.dart';
+import 'package:applicatio01statemanagment/screens/wishlistscreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
@@ -25,24 +26,27 @@ class HomeScreen extends StatefulWidget{
 
 class _HomeScreenState extends State<HomeScreen>{
   int counter =0;
-
   final TextEditingController _searchController = TextEditingController();
   List<Product> items = [];
-
-
   int _selectedIndex = 0;
-  List<Widget> itemList =[
-    MyCataLog(),
-    MyCart(),
-    UserDetail()
-  ];
+  late List<Widget> itemList;
 
+  @override
+  void initState() {
+    itemList =[
+      MyCataLog(),
+      MyCart(),
+      WishList(),
+    ];
+    super.initState();
+  }
   void _onItemTapped(int index) {
     setState(() {
       counter++;
       _selectedIndex = index;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,8 @@ class _HomeScreenState extends State<HomeScreen>{
                 ),
                 actions: [
                   Stack(
-                      children:[ IconButton(icon: const ImageIcon(size: 22,color: Colors.black,
+                      children:[ IconButton(
+                          icon: const ImageIcon(size: 22,color: Colors.black,
                           AssetImage('asset/icons8-notification-30.png')
                       ),
                           onPressed: () {
@@ -106,8 +111,12 @@ class _HomeScreenState extends State<HomeScreen>{
                   ),
                   Column(
                     children: [
-                      const CircleAvatar(backgroundColor: Colors.white,
-                        child: ImageIcon(AssetImage('asset/icons8-account-30.png')),
+                       CircleAvatar(backgroundColor: Colors.white,
+                        child: IconButton(icon: ImageIcon(AssetImage('asset/icons8-account-30.png')),
+                          onPressed: () { 
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>UserDetail(widget.userName)));
+                          },
+                        ),
                       ),
                       Text(widget.userName.substring(0,7),
                         style: const TextStyle(color: Colors.black),
@@ -131,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen>{
                     items: const [
                       ImageIcon(AssetImage('asset/icons8-homeadvisor-30.png')),
                       Icon(Icons.shopping_cart),
-                      ImageIcon(AssetImage('asset/icons8-account-30.png')),
+                      Icon(Icons.favorite_border)
                     ],
                   )
               )

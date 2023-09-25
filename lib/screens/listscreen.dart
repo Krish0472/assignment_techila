@@ -71,16 +71,14 @@ class _MyCataLogState extends State<MyCataLog> {
       print(e);
     });
   }
-
   @override
   void initState() {
-
+    getPostion();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
-    getPostion();
+
     final cbloc = BlocProvider.of<CartBloc>(context);
     return Scaffold(
       backgroundColor: Colors.white,
