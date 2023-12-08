@@ -1,4 +1,4 @@
-import 'package:applicatio01statemanagment/models/product.dart';
+import 'package:assignment_techila/models/product.dart';
 import 'package:equatable/equatable.dart';
 
 class WishList extends Equatable{

@@ -1,6 +1,6 @@
-import 'package:applicatio01statemanagment/bloc/data_event.dart';
-import 'package:applicatio01statemanagment/bloc/wishlist_bloc.dart';
-import 'package:applicatio01statemanagment/bloc/wishlist_state.dart';
+import 'package:assignment_techila/bloc/data_event.dart';
+import 'package:assignment_techila/bloc/wishlist_bloc.dart';
+import 'package:assignment_techila/bloc/wishlist_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/cart_bloc.dart';

@@ -1,6 +1,6 @@
-import 'package:applicatio01statemanagment/bloc/data_event.dart';
-import 'package:applicatio01statemanagment/bloc/data_state.dart';
-import 'package:applicatio01statemanagment/repo/repository.dart';
+import 'package:assignment_techila/bloc/data_event.dart';
+import 'package:assignment_techila/bloc/data_state.dart';
+import 'package:assignment_techila/repo/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/product.dart';
 

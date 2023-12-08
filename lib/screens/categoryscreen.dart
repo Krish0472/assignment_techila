@@ -1,6 +1,6 @@
-import 'package:applicatio01statemanagment/bloc/data_bloc.dart';
-import 'package:applicatio01statemanagment/bloc/data_state.dart';
-import 'package:applicatio01statemanagment/screens/homescreen.dart';
+import 'package:assignment_techila/bloc/data_bloc.dart';
+import 'package:assignment_techila/bloc/data_state.dart';
+import 'package:assignment_techila/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';

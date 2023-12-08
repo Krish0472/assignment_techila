@@ -1,19 +1,11 @@
-import 'package:applicatio01statemanagment/webservices/retrofitexp.dart';
-import 'package:applicatio01statemanagment/webservices/webservise.dart';
-import 'package:dio/dio.dart';
-
+import 'package:assignment_techila/webservices/webservise.dart';
+import 'package:flutter/foundation.dart';
 import '../models/product.dart';
 
 class Repo {
   final webservise = WebServices.instance;
 
-  final webservices = WebServicesTwo(
-    Dio(
-      BaseOptions(
-        contentType: "application/json",
-      ),
-    ),
-  );
+
 
   List<Product> products = []; //get list from api
   List<Product> get _product => products;
@@ -30,10 +22,7 @@ class Repo {
     return _product;
   }
 
-  Future<List<Product>> fetchhData() async {
-    final data = await webservices.getTasks();
-    return data.products;
-  }
+
 
   List<Product> addToCart(Product product) {
     (productListCart.any((element) => element.id == product.id))
@@ -70,7 +59,7 @@ class Repo {
     if (index != -1) {
       productWishList.removeAt(index);
     }
-    print('hiii > ${productWishList.length}');
+    debugPrint('hiii > ${productWishList.length}');
     return productWishList;
   }
   List<Product> addQuantity(int productId) {

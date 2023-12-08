@@ -1,9 +1,9 @@
-import 'package:applicatio01statemanagment/bloc/cart_bloc.dart';
-import 'package:applicatio01statemanagment/bloc/data_bloc.dart';
-import 'package:applicatio01statemanagment/bloc/data_state.dart';
-import 'package:applicatio01statemanagment/models/product.dart';
-import 'package:applicatio01statemanagment/screens/userdetail.dart';
-import 'package:applicatio01statemanagment/screens/wishlistscreen.dart';
+import 'package:assignment_techila/bloc/cart_bloc.dart';
+import 'package:assignment_techila/bloc/data_bloc.dart';
+import 'package:assignment_techila/bloc/data_state.dart';
+import 'package:assignment_techila/models/product.dart';
+import 'package:assignment_techila/screens/userdetail.dart';
+import 'package:assignment_techila/screens/wishlistscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,6 +1,6 @@
-import 'package:applicatio01statemanagment/bloc/data_event.dart';
-import 'package:applicatio01statemanagment/bloc/data_state.dart';
-import 'package:applicatio01statemanagment/repo/repository.dart';
+import 'package:assignment_techila/bloc/data_event.dart';
+import 'package:assignment_techila/bloc/data_state.dart';
+import 'package:assignment_techila/repo/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DataBloc extends Bloc<DataEvent,DataState> {
@@ -11,7 +11,7 @@ class DataBloc extends Bloc<DataEvent,DataState> {
   }
   void _onFetchDataEvent(FetchDataEvent event ,Emitter<DataState> emit) async{
       emit(LoadingState());
-      final pList = await repo.fetchhData();
+      final pList = await repo.fetchData();
       emit(SuccessState(pList));
   }
 

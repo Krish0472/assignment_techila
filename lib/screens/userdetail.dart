@@ -1,5 +1,5 @@
-import 'package:applicatio01statemanagment/screens/homescreen.dart';
-import 'package:applicatio01statemanagment/screens/paymentscreen.dart';
+import 'package:assignment_techila/screens/homescreen.dart';
+import 'package:assignment_techila/screens/paymentscreen.dart';
 import 'package:flutter/material.dart';
 
 class UserDetail extends StatefulWidget {

@@ -1,6 +1,7 @@
-import 'package:applicatio01statemanagment/bloc/cart_bloc.dart';
-import 'package:applicatio01statemanagment/bloc/data_event.dart';
-import 'package:applicatio01statemanagment/bloc/data_state.dart';
+import 'package:assignment_techila/bloc/cart_bloc.dart';
+import 'package:assignment_techila/bloc/data_event.dart';
+import 'package:assignment_techila/bloc/data_state.dart';
+import 'package:assignment_techila/screens/paymentscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -133,7 +134,7 @@ class _MyCartState extends State<MyCart> {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0,
+              SizedBox(height: 30.0,
                 child: Row(
                   children: [
                     const Align(
@@ -157,6 +158,17 @@ class _MyCartState extends State<MyCart> {
                   ],
                 ),
               ),
+                   SizedBox(
+                      height: 40.0,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                        ),
+                        onPressed: (){
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Payment()));
+                        },
+                        child: const Text('Proceed To check out')),
+                  ),
             ]
             );
           },

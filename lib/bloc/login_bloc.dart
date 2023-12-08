@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:applicatio01statemanagment/bloc/login_event.dart';
-import 'package:applicatio01statemanagment/bloc/login_state.dart';
+import 'package:assignment_techila/bloc/login_event.dart';
+import 'package:assignment_techila/bloc/login_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

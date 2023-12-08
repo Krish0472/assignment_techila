@@ -1,5 +1,5 @@
-import 'package:applicatio01statemanagment/screens/loginscreen.dart';
-import 'package:applicatio01statemanagment/screens/splashscreen.dart';
+import 'package:assignment_techila/screens/loginscreen.dart';
+import 'package:assignment_techila/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {

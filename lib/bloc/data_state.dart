@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:applicatio01statemanagment/models/product.dart';
+import 'package:assignment_techila/models/product.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class DataState extends Equatable {

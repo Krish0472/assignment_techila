@@ -1,4 +1,4 @@
-import 'package:applicatio01statemanagment/models/user.dart';
+import 'package:assignment_techila/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LoginEvent extends Equatable {

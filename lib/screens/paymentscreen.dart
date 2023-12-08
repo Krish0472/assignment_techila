@@ -1,4 +1,5 @@
-import 'package:applicatio01statemanagment/screens/userdetail.dart';
+import 'package:assignment_techila/screens/cartscreen.dart';
+import 'package:assignment_techila/screens/userdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,25 +30,32 @@ class _PaymentState extends State<Payment>{
       color: Colors.black,),
       ),
       body: Container(
-        child: CreditCardWidget(
-          isHolderNameVisible: true,
-          cardHolderName: 'krishna singh',
-          cardNumber: '124554211234',
-          expiryDate: '09/28',
-          cvvCode: '090',
-          showBackView: true,
-          onCreditCardWidgetChange: (creditCardBrand) {  },
-          bankName: 'Axis Bank',
-          backgroundImage: 'asset/card_bg.png',
-          isChipVisible: true,
-          cardType: CardType.visa,
-          height: 230,
-          isSwipeGestureEnabled: true,
-          obscureCardNumber: true,
+        child: Column(
+          children: [
+            CreditCardWidget(
+            isHolderNameVisible: true,
+            cardHolderName: 'krishna singh',
+            cardNumber: '124554211234',
+            expiryDate: '09/28',
+            cvvCode: '090',
+            showBackView: true,
+            onCreditCardWidgetChange: (creditCardBrand) {  },
+            bankName: 'Axis Bank',
+            backgroundImage: 'asset/card_bg.png',
+            isChipVisible: true,
+            cardType: CardType.visa,
+            height: 230,
+            isSwipeGestureEnabled: true,
+            obscureCardNumber: true,
 
 
 
-        ),
+          ),
+            SizedBox(height: 300,),
+            ElevatedButton(onPressed: (){
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyCart()));
+            }, child: Text('Back To Cart '))
+       ] ),
       ),
     );
   }
