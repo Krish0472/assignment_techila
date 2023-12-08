@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiBlocProvider(    //multiBlocPRovider for bloc
       providers: [
         BlocProvider<DataBloc>(create: (context) => DataBloc()),
         BlocProvider<CartBloc>(create: (context) => CartBloc(repo)),
