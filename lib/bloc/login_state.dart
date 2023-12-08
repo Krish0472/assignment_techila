@@ -1,14 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-import '../models/user.dart';
-
 abstract class LoginState extends Equatable {
   const LoginState();
 
   @override
   List<Object?> get props => [];
 }
-
 
 class InitialLoginState extends LoginState {}
 
@@ -24,5 +21,3 @@ class ErrorLoginState extends LoginState {
   @override
   List<Object?> get props => [error];
 }
-
-

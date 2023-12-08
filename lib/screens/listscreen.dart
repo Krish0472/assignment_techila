@@ -1,6 +1,7 @@
 import 'package:applicatio01statemanagment/bloc/cart_bloc.dart';
 import 'package:applicatio01statemanagment/bloc/data_bloc.dart';
 import 'package:applicatio01statemanagment/bloc/data_state.dart';
+import 'package:applicatio01statemanagment/bloc/wishlist_bloc.dart';
 import 'package:applicatio01statemanagment/screens/detailscreen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,10 @@ import '../bloc/data_event.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
+
 class MyCataLog extends StatefulWidget {
+  const MyCataLog({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _MyCataLogState();
@@ -55,7 +59,8 @@ class _MyCataLogState extends State<MyCataLog> {
         _currentPosition = position;
       });
       _getAddressFromLatLng(_currentPosition!);
-    }).catchError((e) => print(e));
+    // ignore: invalid_return_type_for_catch_error
+    }).catchError((e) => debugPrint(e));
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
@@ -68,7 +73,7 @@ class _MyCataLogState extends State<MyCataLog> {
         _address1 = '${place.locality}';
       });
     }).catchError((e) {
-      print(e);
+      debugPrint(e);
     });
   }
   @override
@@ -78,8 +83,8 @@ class _MyCataLogState extends State<MyCataLog> {
   }
   @override
   Widget build(BuildContext context) {
-
     final cbloc = BlocProvider.of<CartBloc>(context);
+    final wbloc= BlocProvider.of<WishListBloc>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocConsumer<DataBloc, DataState>(
@@ -90,6 +95,7 @@ class _MyCataLogState extends State<MyCataLog> {
             );
           }
           if (state is SuccessState) {
+
             return Container(
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
@@ -98,7 +104,7 @@ class _MyCataLogState extends State<MyCataLog> {
               padding: const EdgeInsets.all(2.0),
               child: Column(
                 children: [
-                  Card(elevation: 2,
+                  Card(
                     child: Row(
                       children: [
                         Image.asset('asset/icons8-location-30.png',height: 20,width: 20,),
@@ -123,194 +129,9 @@ class _MyCataLogState extends State<MyCataLog> {
                       physics: const AlwaysScrollableScrollPhysics(),
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            height: 80.0,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              children: [
-                                Card(
-                                  child: SizedBox(
-                                    width: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
-                                            ),
-                                            child:
-                                                Image.asset('asset/apple.png'),
-                                          ),
-                                          //SizedBox(height:90,child: Image.asset('asset/apple.png')),
-                                          const Text(
-                                            'mobile',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 8.0),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                  child: SizedBox(
-                                    width: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
-                                            ),
-                                            child: Image.asset(
-                                                'asset/laptop.jpeg'),
-                                          ),
-                                          //SizedBox(height:90,child: Image.asset('asset/laptop.jpeg')),
-                                          const Text(
-                                            'laptops',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 8.0),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                  child: SizedBox(
-                                    width: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                            ),
-                                            child:
-                                                Image.asset('asset/mkup.jpeg'),
-                                          ),
-                                          // SizedBox(height:90,child: Image.asset('asset/mkup.jpeg')),
-                                          const Text(
-                                            'Beauity',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 8.0),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                  child: SizedBox(
-                                    width: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
-                                            ),
-                                            child:
-                                                Image.asset('asset/homeD.jpeg'),
-                                          ),
-                                          //SizedBox(height:90,child: Image.asset('asset/homeD.jpeg')),
-                                          const Text(
-                                            'decoration',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 8.0),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                  child: SizedBox(
-                                    width: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                            ),
-                                            child:
-                                                Image.asset('asset/veg2.jpeg'),
-                                          ),
-                                          // SizedBox(height:90,child: Image.asset('asset/veg2.jpeg')),
-                                          const Text(
-                                            'vegitables',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 8.0),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                  child: SizedBox(
-                                    width: 60,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                            ),
-                                            child: Image.asset(
-                                              'asset/ele0'
-                                              '.jpeg',
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                          const Text(
-                                            'electronics',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 8.0),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 10.0),
                           ClipRRect(
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(25.0),
-                              //topRight: Radius.circular(25.0),
                               bottomRight: Radius.circular(25.0),
                             ),
                             child: Align(
@@ -408,21 +229,14 @@ class _MyCataLogState extends State<MyCataLog> {
                                           )
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5.0,
                                       ),
                                       Row(
                                         children: [
-                                          Text(
-                                            '${state.productList[index].title}',
-                                          ),
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Text(
-                                            '${state.productList[index].price}',
-                                            softWrap: true,
-                                          ),
+                                          Text(state.productList[index].title,),
+                                          const SizedBox(width: 10.0,),
+                                          Text('${state.productList[index].price}',softWrap: true,),
                                         ],
                                       )
                                     ],
@@ -448,7 +262,7 @@ class _MyCataLogState extends State<MyCataLog> {
                                   if (state.productList[index].category ==
                                       'smartphones') {
                                     return ClipRRect(
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(20),
                                           bottomRight: Radius.circular(20)),
                                       child: Card(
@@ -463,10 +277,7 @@ class _MyCataLogState extends State<MyCataLog> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          DetailPage(
-                                                        productDetail: state
-                                                            .productList[index],
-                                                      ),
+                                                          DetailPage(productDetail: state.productList[index],),
                                                     ),
                                                   );
                                                 },
@@ -474,20 +285,13 @@ class _MyCataLogState extends State<MyCataLog> {
                                                   height: 200,
                                                   width: 200,
                                                   child: Image.network(
-                                                    state.productList[index]
-                                                        .thumbnail,
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                                    state.productList[index].thumbnail, fit: BoxFit.cover,),
                                                 ),
                                               ),
                                               SizedBox(
                                                 height: 15,
                                                 width: 200,
-                                                child: Text(
-                                                  '${state.productList[index].title}',
-                                                  style:
-                                                      TextStyle(fontSize: 15),
-                                                ),
+                                                child: Text(state.productList[index].title, style: const TextStyle(fontSize: 15),),
                                               ),
                                               SizedBox(
                                                 height: 40,
@@ -500,27 +304,19 @@ class _MyCataLogState extends State<MyCataLog> {
                                                       child: Text(
                                                           '${state.productList[index].price}'),
                                                     ),
+
                                                     Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 100.0),
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              shape:
-                                                                  StadiumBorder(),
-                                                              elevation: 2,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .blueGrey),
-                                                          onPressed: () {
-                                                            cbloc.add(AddToCartEvent(
-                                                                state.productList[
-                                                                    index]));
+                                                      padding: const EdgeInsets.only(
+                                                          left: 65.0),
+                                                      child: IconButton(
+                                                          onPressed: () async{
+                                                            cbloc.add(AddToCartEvent(state.productList[index]));
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .showSnackBar(
                                                                     const SnackBar(
                                                               content: Text(
-                                                                  'Item Added Succesfully'),
+                                                                  'item added card'),
                                                               shape: RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius.all(
@@ -532,11 +328,44 @@ class _MyCataLogState extends State<MyCataLog> {
                                                                           1),
                                                             ));
                                                           },
-                                                          child: Icon(
+                                                          icon: const Icon(
                                                             Icons.add,
                                                             color: Colors.black,
                                                           )),
                                                     ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(
+                                                          left: 7.0),
+                                                      child: IconButton(
+                                                          onPressed: () {
+                                                            wbloc.add(AddToWishListEvent(state.productList[index]));
+                                                              ScaffoldMessenger
+                                                                  .of(context)
+                                                                  .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content: Text(
+                                                                        'item add to wishList'),
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(
+                                                                                10.0))),
+                                                                    duration:
+                                                                    Duration(
+                                                                        seconds:
+                                                                        1),
+                                                                  ));
+
+
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons.favorite_border,
+                                                            color: Colors.black,
+                                                          )
+                                                      ),
+                                                    ),
+
+
                                                   ],
                                                 ),
                                               ),
@@ -546,6 +375,7 @@ class _MyCataLogState extends State<MyCataLog> {
                                       ),
                                     );
                                   }
+                                  return null;
                                 }),
                           ),
                           const Padding(
@@ -616,39 +446,51 @@ class _MyCataLogState extends State<MyCataLog> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 100.0),
-                                                          child: ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  shape:
-                                                                      const StadiumBorder(),
-                                                                  elevation: 2,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .blueGrey),
+                                                              const EdgeInsets.only(left: 65.0),
+                                                          child: IconButton(
                                                               onPressed: () {
-                                                                cbloc.add(
-                                                                    AddToCartEvent(
-                                                                        e));
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
+                                                                cbloc.add(AddToCartEvent(e));
+                                                                ScaffoldMessenger.of(context).showSnackBar(
                                                                         const SnackBar(
-                                                                  content: Text(
-                                                                      'Item Added Succesfully'),
+                                                                  content: Text('item add to cart successfully'),
                                                                   shape: RoundedRectangleBorder(
                                                                       borderRadius:
                                                                           BorderRadius.all(
                                                                               Radius.circular(10.0))),
                                                                   duration:
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
+                                                                      Duration(seconds: 1),
                                                                 ));
                                                               },
-                                                              child: const Icon(
+                                                              icon: const Icon(
                                                                 Icons.add,
+                                                                color: Colors
+                                                                    .black,
+                                                              )),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child: IconButton(
+                                                              onPressed: () {
+                                                                wbloc.add(AddToWishListEvent(e));
+                                                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                    content: Text('item added to wishlist'),
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.all(
+                                                                            Radius.circular(10.0))),
+                                                                    duration:
+                                                                    Duration(
+                                                                        seconds:
+                                                                        1),
+                                                                  ));
+
+
+
+                                                              },
+                                                              icon: const Icon(
+                                                                Icons.favorite_border,
                                                                 color: Colors
                                                                     .black,
                                                               )),
@@ -732,39 +574,50 @@ class _MyCataLogState extends State<MyCataLog> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 100.0),
-                                                          child: ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  shape:
-                                                                      const StadiumBorder(),
-                                                                  elevation: 2,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .blueGrey),
+                                                          const EdgeInsets.only(left: 65.0),
+                                                          child: IconButton(
                                                               onPressed: () {
-                                                                cbloc.add(
-                                                                    AddToCartEvent(
-                                                                        e));
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'Item Added Succesfully'),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
+                                                                cbloc.add(AddToCartEvent(e));
+                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text('item add to cart successfully'),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
                                                                           BorderRadius.all(
                                                                               Radius.circular(10.0))),
-                                                                  duration:
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
-                                                                ));
+                                                                      duration:
+                                                                      Duration(seconds: 1),
+                                                                    ));
                                                               },
-                                                              child: const Icon(
+                                                              icon: const Icon(
                                                                 Icons.add,
+                                                                color: Colors
+                                                                    .black,
+                                                              )),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child: IconButton(
+                                                              onPressed: () {
+
+                                                                  wbloc.add(AddToWishListEvent(e));
+                                                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                    content: Text('item added to wishlist'),
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.all(
+                                                                            Radius.circular(10.0))),
+                                                                    duration:
+                                                                    Duration(
+                                                                        seconds:
+                                                                        1),
+                                                                  )
+                                                                  );
+                                                                  },
+                                                              icon: const Icon(
+                                                                Icons.favorite_border,
                                                                 color: Colors
                                                                     .black,
                                                               )),
@@ -848,39 +701,49 @@ class _MyCataLogState extends State<MyCataLog> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 100.0),
-                                                          child: ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  shape:
-                                                                      const StadiumBorder(),
-                                                                  elevation: 2,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .blueGrey),
+                                                          const EdgeInsets.only(left: 65.0),
+                                                          child: IconButton(
                                                               onPressed: () {
-                                                                cbloc.add(
-                                                                    AddToCartEvent(
-                                                                        e));
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'Item Added Succesfully'),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
+                                                                cbloc.add(AddToCartEvent(e));
+                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text('item add to cart successfully'),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
                                                                           BorderRadius.all(
                                                                               Radius.circular(10.0))),
-                                                                  duration:
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
-                                                                ));
+                                                                      duration:
+                                                                      Duration(seconds: 1),
+                                                                    ));
                                                               },
-                                                              child: const Icon(
+                                                              icon: const Icon(
                                                                 Icons.add,
+                                                                color: Colors
+                                                                    .black,
+                                                              )),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child: IconButton(
+                                                              onPressed: () {
+
+                                                                  wbloc.add(AddToWishListEvent(e));
+                                                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                    content: Text('item added to wishlist'),
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.all(
+                                                                            Radius.circular(10.0))),
+                                                                    duration:
+                                                                    Duration(
+                                                                        seconds:
+                                                                        1),
+                                                                  ));
+                                                                  },
+                                                              icon: const Icon(
+                                                                Icons.favorite_border,
                                                                 color: Colors
                                                                     .black,
                                                               )),
@@ -964,43 +827,49 @@ class _MyCataLogState extends State<MyCataLog> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 100.0),
-                                                          child: ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  shape:
-                                                                      const StadiumBorder(),
-                                                                  elevation: 2,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .blueGrey),
+                                                          const EdgeInsets.only(left: 65.0),
+                                                          child: IconButton(
                                                               onPressed: () {
-                                                                cbloc.add(
-                                                                    AddToCartEvent(
-                                                                        e));
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'Item Added Successfully'),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
+                                                                cbloc.add(AddToCartEvent(e));
+                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text('item add to cart successfully'),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
                                                                           BorderRadius.all(
                                                                               Radius.circular(10.0))),
-                                                                  duration:
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
-                                                                ));
+                                                                      duration:
+                                                                      Duration(seconds: 1),
+                                                                    ));
                                                               },
-                                                              child: const Icon(
+                                                              icon: const Icon(
                                                                 Icons.add,
                                                                 color: Colors
                                                                     .black,
                                                               )),
                                                         ),
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child:  IconButton(
+                                                                onPressed: () {
+                                                                  wbloc.add(AddToWishListEvent(e));
+                                                                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                          content: Text('item added to wishlist'),
+                                                                          shape: RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.all(
+                                                                                  Radius.circular(10.0))),
+                                                                          duration:
+                                                                          Duration(
+                                                                              seconds:
+                                                                              1),
+                                                                        ));
+                                                                        },
+                                                                icon: const Icon(Icons.favorite_border, color: Colors.black,),
+                                                              ),
+                                                            ),
                                                       ],
                                                     ),
                                                   ),
@@ -1080,39 +949,48 @@ class _MyCataLogState extends State<MyCataLog> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 100.0),
-                                                          child: ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  shape:
-                                                                      const StadiumBorder(),
-                                                                  elevation: 2,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .blueGrey),
+                                                          const EdgeInsets.only(left: 65.0),
+                                                          child: IconButton(
                                                               onPressed: () {
-                                                                cbloc.add(
-                                                                    AddToCartEvent(
-                                                                        e));
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'Item Added Successfully'),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
+                                                                cbloc.add(AddToCartEvent(e));
+                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                    const SnackBar(
+                                                                      content: Text('item add to cart successfully'),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
                                                                           BorderRadius.all(
                                                                               Radius.circular(10.0))),
+                                                                      duration:
+                                                                      Duration(seconds: 1),
+                                                                    ));
+                                                              },
+                                                              icon: const Icon(
+                                                                Icons.add,
+                                                                color: Colors
+                                                                    .black,
+                                                              )),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child: IconButton(
+                                                              onPressed: () {
+                                                                wbloc.add(AddToWishListEvent(e));
+                                                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                  content: Text('item added to wishlist'),
+                                                                  shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.all(
+                                                                          Radius.circular(10.0))),
                                                                   duration:
-                                                                      Duration(
-                                                                          seconds:
-                                                                              1),
+                                                                  Duration(
+                                                                      seconds:
+                                                                      1),
                                                                 ));
                                                               },
-                                                              child: const Icon(
-                                                                Icons.add,
+                                                              icon: const Icon(
+                                                                Icons.favorite_border,
                                                                 color: Colors
                                                                     .black,
                                                               )),
@@ -1141,7 +1019,9 @@ class _MyCataLogState extends State<MyCataLog> {
             child: CircularProgressIndicator(),
           );
         },
-        listener: (BuildContext context, state) {},
+        listener: (BuildContext context, state) {
+
+        },
       ),
     );
   }

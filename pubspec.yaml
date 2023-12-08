@@ -54,6 +54,7 @@ dependencies:
   geolocator: ^10.0.1
   geocoding: ^2.1.0
   shared_preferences: ^2.2.1
+  flutter_credit_card: ^3.0.7
 
 
 dev_dependencies:
@@ -103,6 +104,8 @@ flutter:
       - asset/icons8-like-30.png
       - asset/mobile.json
       - asset/apple.png
+      - asset/mastercard.png
+      - asset/card_bg.png
       - asset/laptop.jpeg
       - asset/mkup.jpeg
       - asset/home.jpeg

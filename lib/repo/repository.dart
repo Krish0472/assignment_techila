@@ -18,8 +18,9 @@ class Repo {
   List<Product> products = []; //get list from api
   List<Product> get _product => products;
 
-  List<Product> productListCart = [];
-  List<Product> get _productListCart => productListCart;
+
+  List<Product> productWishList =[];
+  List<Product> productListCart = [];//list for cart
 
   num _totalAmount = 0;
   num get totalAmount => _totalAmount;
@@ -53,7 +54,25 @@ class Repo {
     setTotalAmount();
     return productListCart;
   }
-
+  List<Product> addToWishList(Product product){
+    productWishList.add(Product(
+        category: product.category,
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        thumbnail: product.thumbnail,
+        images: product.images));
+    return productWishList;
+  }
+  List<Product> delFromWishList(Product product) {
+    int index =
+    productWishList.indexWhere((element) => element.id == product.id);
+    if (index != -1) {
+      productWishList.removeAt(index);
+    }
+    print('hiii > ${productWishList.length}');
+    return productWishList;
+  }
   List<Product> addQuantity(int productId) {
     int index =
         productListCart.indexWhere((element) => element.id == productId);
@@ -86,7 +105,6 @@ class Repo {
       productListCart.removeAt(index);
     }
     setTotalAmount();
-
     return productListCart;
   }
 }

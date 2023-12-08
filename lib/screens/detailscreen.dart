@@ -44,26 +44,13 @@ class DetilPageState extends State<DetailPage> {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
-                actions: [
-                  IconButton(color: Colors.black,onPressed: (){},
-                    icon: ImageIcon(AssetImage('asset/icons8-like-30.png')
-                    )
-                ),
-                  IconButton(onPressed: (){
-                    Navigator.pushReplacement(
-                        context, MaterialPageRoute(builder: (context)=>MyCart()));
-                  },
-                      icon: Icon(Icons.shopping_cart),color: Colors.black,
-                  )
-                ],
-                  backgroundColor: Colors.white,
+                backgroundColor: Colors.white,
                   leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
+                    icon: const Icon(Icons.arrow_back_ios),
                     color: Colors.black,onPressed: () async {
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     name = prefs.getString('name')!;
-                    print('name is ${name}');
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(name.substring(0,7))));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(name.substring(0,7))));
                 },
                 ),
                 pinned: true,

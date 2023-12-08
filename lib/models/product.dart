@@ -1,12 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 part "product.g.dart";
-// class ProductModel{
-//   List<Product> products;
-//   ProductModel({required this.products});
-//   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-//     products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
-//   );
-// }
 @JsonSerializable()
 class MyProducts {
   List<Product> products;
