@@ -16,8 +16,7 @@ jobs:
 
 
 
-      - name: Install dependencies
-        run: dart pub get
+
 
 
       - name: Analyze project source
