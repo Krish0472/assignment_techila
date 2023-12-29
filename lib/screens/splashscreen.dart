@@ -16,7 +16,7 @@ class SplashScreenState extends State<SplashScreen> {
     return SafeArea(
       child: AnimatedSplashScreen(
           splash: Lottie.asset('asset/data4.json'),
-          nextScreen: LoginPage(),
+          nextScreen: const LoginPage(),
           splashTransition: SplashTransition.slideTransition,
           duration: 1500,
 

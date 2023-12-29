@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'detailscreen.dart';
 
-
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
 
@@ -18,13 +17,11 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
-
   late bool isDisable;
   late CartBloc cbloc = BlocProvider.of<CartBloc>(context);
 
-
   @override
-  void initState(){
+  void initState() {
     isDisable = false;
     super.initState();
   }
@@ -36,10 +33,10 @@ class _MyCartState extends State<MyCart> {
         height: MediaQuery.of(context).size.height,
         child: BlocConsumer<CartBloc, DataState>(
           builder: (BuildContext context, state) {
-            return Column(
-                children: [
+            return Column(children: [
               Expanded(
-                child: SizedBox(height: 490,
+                child: SizedBox(
+                  height: 490,
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -51,8 +48,8 @@ class _MyCartState extends State<MyCart> {
                           children: [
                             SlidableAction(
                               onPressed: (context) {
-                                cbloc.add(
-                                    RemoveProduct(state.productListCart[index]));
+                                cbloc.add(RemoveProduct(
+                                    state.productListCart[index]));
                               },
                               backgroundColor: Colors.red,
                               icon: Icons.delete,
@@ -70,9 +67,7 @@ class _MyCartState extends State<MyCart> {
                                     MaterialPageRoute(
                                         builder: (context) => DetailPage(
                                             productDetail:
-                                            state.productListCart [index])
-                                    )
-                                );
+                                                state.productListCart[index])));
                               },
                               backgroundColor: Colors.green,
                               icon: Icons.details,
@@ -90,27 +85,41 @@ class _MyCartState extends State<MyCart> {
                                   fit: BoxFit.fill)),
                           title: Row(
                             children: [
-                              const SizedBox(width: 30.0,),
+                              const SizedBox(
+                                width: 30.0,
+                              ),
                               Flexible(
-                                child:
-                                Text(state.productListCart[index].title,style: const TextStyle(fontWeight: FontWeight.bold),),
-                              ), ],
+                                child: Text(
+                                  state.productListCart[index].title,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
                           ),
                           subtitle: Row(
                             children: [
-                              const SizedBox(width: 30.0,),
+                              const SizedBox(
+                                width: 30.0,
+                              ),
                               Flexible(
                                 child: Text(
-                                  'Total:${state.productListCart[index].price.toDouble() * state.productListCart[index].quantity!.toDouble()}',style: const TextStyle(fontWeight: FontWeight.bold),),
+                                  'Total:${state.productListCart[index].price.toDouble() * state.productListCart[index].quantity!.toDouble()}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
-                              const Padding(padding: EdgeInsets.only(left: 2.0)),
+                              const Padding(
+                                  padding: EdgeInsets.only(left: 2.0)),
                               IconButton(
                                   onPressed: () {
-                                    if (state.productListCart[index].quantity != 0) {
-                                      cbloc.add(DecreaseProductQuantity(state.productListCart[index].id));
-                                    } else{
-                                      cbloc.add(
-                                          RemoveProduct(state.productListCart[index]));
+                                    if (state.productListCart[index].quantity !=
+                                        0) {
+                                      cbloc.add(DecreaseProductQuantity(
+                                          state.productListCart[index].id));
+                                    } else {
+                                      cbloc.add(RemoveProduct(
+                                          state.productListCart[index]));
                                       isDisable = true;
                                     }
                                   },
@@ -119,11 +128,16 @@ class _MyCartState extends State<MyCart> {
                                 padding: EdgeInsets.only(left: 1.0),
                               ),
                               Text(
-                                'Qty:${state.productListCart[index].quantity}',style: const TextStyle(fontWeight: FontWeight.bold),),
-                              const Padding(padding: EdgeInsets.only(left: 2.0)),
+                                'Qty:${state.productListCart[index].quantity}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const Padding(
+                                  padding: EdgeInsets.only(left: 2.0)),
                               IconButton(
                                   onPressed: () {
-                                    cbloc.add(IncrementProductQuantity(state.productListCart[index].id));
+                                    cbloc.add(IncrementProductQuantity(
+                                        state.productListCart[index].id));
                                   },
                                   icon: const Icon(Icons.add)),
                             ],
@@ -134,7 +148,8 @@ class _MyCartState extends State<MyCart> {
                   ),
                 ),
               ),
-              SizedBox(height: 30.0,
+              SizedBox(
+                height: 30.0,
                 child: Row(
                   children: [
                     const Align(
@@ -158,24 +173,25 @@ class _MyCartState extends State<MyCart> {
                   ],
                 ),
               ),
-                   SizedBox(
-                      height: 40.0,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                        ),
-                        onPressed: (){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Payment()));
-                        },
-                        child: const Text('Proceed To check out')),
-                  ),
-            ]
-            );
+              SizedBox(
+                height: 40.0,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Payment()));
+                    },
+                    child: const Text('Proceed To check out')),
+              ),
+            ]);
           },
           listener: (BuildContext context, state) {},
         ),
       ),
     );
-
   }
 }

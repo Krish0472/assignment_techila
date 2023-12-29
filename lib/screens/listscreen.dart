@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:assignment_techila/bloc/cart_bloc.dart';
 import 'package:assignment_techila/bloc/data_bloc.dart';
 import 'package:assignment_techila/bloc/data_state.dart';
@@ -25,6 +27,7 @@ class _MyCataLogState extends State<MyCataLog> {
   String? address;
   String? _address1;
   Position? _currentPosition;
+
   Future<bool> _handlePermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -76,6 +79,7 @@ class _MyCataLogState extends State<MyCataLog> {
       debugPrint(e);
     });
   }
+
   @override
   void initState() {
     getPostion();
@@ -95,7 +99,6 @@ class _MyCataLogState extends State<MyCataLog> {
             );
           }
           if (state is SuccessState) {
-
             return Container(
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
@@ -120,7 +123,6 @@ class _MyCataLogState extends State<MyCataLog> {
                             style: const TextStyle(color: Colors.blue),
                           ),
                         ),
-
                       ],
                     ),
                   ),
@@ -155,7 +157,6 @@ class _MyCataLogState extends State<MyCataLog> {
                                   child: ClipRRect(
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(25.0),
-                                      //topRight: Radius.circular(25.0),
                                       bottomRight: Radius.circular(25.0),
                                     ),
                                     child: Image(
@@ -391,7 +392,7 @@ class _MyCataLogState extends State<MyCataLog> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               children: state.productList
-                                  .map((e) => e.category != "laptops"
+                                  .map((e) => e.category != 'laptops'
                                       ? const SizedBox()
                                       : ClipRRect(
                                           borderRadius: const BorderRadius.only(
@@ -519,7 +520,7 @@ class _MyCataLogState extends State<MyCataLog> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               children: state.productList
-                                  .map((e) => e.category != "home-decoration"
+                                  .map((e) => e.category != 'home-decoration'
                                       ? const SizedBox()
                                       : ClipRRect(
                                           borderRadius: const BorderRadius.only(
@@ -646,7 +647,7 @@ class _MyCataLogState extends State<MyCataLog> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               children: state.productList
-                                  .map((e) => e.category != "groceries"
+                                  .map((e) => e.category != 'groceries'
                                       ? const SizedBox()
                                       : ClipRRect(
                                           borderRadius: const BorderRadius.only(
@@ -772,7 +773,7 @@ class _MyCataLogState extends State<MyCataLog> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               children: state.productList
-                                  .map((e) => e.category != "fragrances"
+                                  .map((e) => e.category != 'fragrances'
                                       ? const SizedBox()
                                       : ClipRRect(
                                           borderRadius: const BorderRadius.only(
@@ -894,7 +895,7 @@ class _MyCataLogState extends State<MyCataLog> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               children: state.productList
-                                  .map((e) => e.category != "skincare"
+                                  .map((e) => e.category != 'skincare'
                                       ? const SizedBox()
                                       : ClipRRect(
                                           borderRadius: const BorderRadius.only(

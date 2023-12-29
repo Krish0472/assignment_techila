@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields, must_be_immutable
+
 import 'package:assignment_techila/models/product.dart';
 import 'package:equatable/equatable.dart';
 

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:assignment_techila/screens/cartscreen.dart';
 import 'package:assignment_techila/screens/userdetail.dart';
 import 'package:flutter/material.dart';
@@ -29,34 +31,32 @@ class _PaymentState extends State<Payment>{
       },
       color: Colors.black,),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            CreditCardWidget(
-            isHolderNameVisible: true,
-            cardHolderName: 'krishna singh',
-            cardNumber: '124554211234',
-            expiryDate: '09/28',
-            cvvCode: '090',
-            showBackView: true,
-            onCreditCardWidgetChange: (creditCardBrand) {  },
-            bankName: 'Axis Bank',
-            backgroundImage: 'asset/card_bg.png',
-            isChipVisible: true,
-            cardType: CardType.visa,
-            height: 230,
-            isSwipeGestureEnabled: true,
-            obscureCardNumber: true,
+      body: Column(
+        children: [
+          CreditCardWidget(
+          isHolderNameVisible: true,
+          cardHolderName: 'krishna singh',
+          cardNumber: '124554211234',
+          expiryDate: '09/28',
+          cvvCode: '090',
+          showBackView: true,
+          onCreditCardWidgetChange: (creditCardBrand) {  },
+          bankName: 'Axis Bank',
+          backgroundImage: 'asset/card_bg.png',
+          isChipVisible: true,
+          cardType: CardType.visa,
+          height: 230,
+          isSwipeGestureEnabled: true,
+          obscureCardNumber: true,
 
 
 
-          ),
-            SizedBox(height: 300,),
-            ElevatedButton(onPressed: (){
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyCart()));
-            }, child: Text('Back To Cart '))
+        ),
+          const SizedBox(height: 300,),
+          ElevatedButton(onPressed: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const MyCart()));
+          }, child: const Text('Back To Cart '))
        ] ),
-      ),
     );
   }
 }

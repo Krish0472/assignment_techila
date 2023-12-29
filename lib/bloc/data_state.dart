@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, overridden_fields
 
 import 'package:assignment_techila/models/product.dart';
 import 'package:equatable/equatable.dart';
@@ -35,15 +35,16 @@ class CartLoaded extends DataState {
 
 class CartState extends DataState {
   @override
-  // ignore: overridden_fields
   num totalBill;
+
   @override
-  // ignore: overridden_fields
   List<Product> productListCart = [];
+
   CartState(this.productListCart, this.totalBill);
 }
 
 class ProductDeletedFromCartState extends DataState {
+  @override
   final List<Product> productListCart;
   @override
   num totalBill;

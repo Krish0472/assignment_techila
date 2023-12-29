@@ -29,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen>{
   @override
   void initState() {
     itemList =[
-      MyCataLog(),
-      MyCart(),
-      WishList(),
+      const MyCataLog(),
+      const MyCart(),
+      const WishList(),
     ];
 
 

@@ -12,8 +12,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (event.username.isNotEmpty && event.password.isNotEmpty) {
         emit(LoadingLoginState());
         await Future.delayed(const Duration(seconds: 2));
-        debugPrint("username ${event.username}");
-        debugPrint("password ${event.password}");
+        debugPrint('username ${event.username}');
+        debugPrint('password ${event.password}');
         emit(SuccessLoginState());
       }
     });

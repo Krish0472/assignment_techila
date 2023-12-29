@@ -3,8 +3,8 @@ import 'package:assignment_techila/screens/paymentscreen.dart';
 import 'package:flutter/material.dart';
 
 class UserDetail extends StatefulWidget {
-  String name;
-  UserDetail(this.name, {super.key});
+   final String name;
+  const UserDetail(this.name, {super.key});
 
   @override
   State<UserDetail> createState() => _UserDetailState();
@@ -302,7 +302,7 @@ class _UserDetailState extends State<UserDetail> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Payment()));
+                                                      const Payment()));
                                         },
                                         icon: const Icon(
                                           Icons.arrow_forward_ios,

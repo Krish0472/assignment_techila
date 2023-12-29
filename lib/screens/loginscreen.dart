@@ -231,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      MyCataLog()));
+                                                      const MyCataLog()));
                                         },
                                         child: const Text(
                                           'Get help logging in.',
@@ -259,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  RegisterScreen()));
+                                                  const RegisterScreen()));
                                     },
                                     style: ElevatedButton.styleFrom(
                                         shape: const StadiumBorder(),

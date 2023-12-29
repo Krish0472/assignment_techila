@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:assignment_techila/bloc/cart_bloc.dart';
 import 'package:assignment_techila/bloc/data_bloc.dart';
 import 'package:assignment_techila/bloc/data_event.dart';

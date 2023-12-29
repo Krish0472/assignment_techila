@@ -6,19 +6,19 @@ class MyGlobalObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    log('${bloc.runtimeType} $event',name: "onEvent");
+    log('${bloc.runtimeType} $event',name: 'onEvent');
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    log('${bloc.runtimeType} $change',name: "onChange");
+    log('${bloc.runtimeType} $change',name: 'onChange');
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    log('${bloc.runtimeType} $transition',name: "onTransition");
+    log('${bloc.runtimeType} $transition',name: 'onTransition');
   }
 
   @override

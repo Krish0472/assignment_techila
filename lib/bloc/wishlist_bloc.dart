@@ -26,7 +26,7 @@ class WishListBloc extends Bloc<DataEvent, WishListState> {
       RemoveProductFromWishList event, Emitter<WishListState> emit) {
     final wishListResult = _deleteCartProduct(product: event.prod);
     emit(ProductDeletedFromWishListState(wishListResult));
-    emit(loadSuccess(wishListResult));
+    emit(LoadSuccess(wishListResult));
   }
 
   List<Product> _deleteCartProduct({required Product product}) =>

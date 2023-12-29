@@ -1,4 +1,4 @@
-// ignore_for_file: overridden_fields
+// ignore_for_file: overridden_fields, must_be_immutable
 
 import 'package:equatable/equatable.dart';
 
@@ -12,10 +12,10 @@ class WishListState extends Equatable {
 
 abstract class ActionState extends WishListState {}
 
-class loadSuccess extends ActionState {
+class LoadSuccess extends ActionState {
   @override
   List<Product> wishListProduct = [];
-  loadSuccess(this.wishListProduct);
+  LoadSuccess(this.wishListProduct);
   @override
   List<Object?> get props => [wishListProduct];
 }
