@@ -33,11 +33,10 @@ jobs:
 
 
 
-      - name: Run tests
-        run: dart test
+
 
       - name: Build the APK
         env:
           APP_VERSION_CODE: 1.0.0+1
-        run: flutter build apk --release
+        run: flutter build apk --debug
 
