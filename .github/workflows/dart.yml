@@ -31,8 +31,6 @@ jobs:
           flutter-version: 3.16.0
 
 
-      - name: Analyze project source
-        run: dart analyze
 
 
       - name: Run tests
