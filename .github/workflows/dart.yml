@@ -43,7 +43,7 @@ jobs:
       - name: Build the AAB
         env:
           APP_VERSION_CODE: 1.0.0+1
-        run: flutter build aab
+        run: flutter build appbundle
 
       - name: Uploading artifacts android
         uses: actions/upload-artifact@v3
