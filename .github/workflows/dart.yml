@@ -27,13 +27,13 @@ jobs:
           flutter-version: 3.16.0
 
       - name: Analyze Flutter
-        run: make flutter analyse
+        run:  flutter analyze
 
       - name: Install dependencies
         run: dart pub get
 
       - name: Analyze Dart
-        run:  dart analyse
+        run:  dart analyze
 
       - name: Build the APK
         env:
