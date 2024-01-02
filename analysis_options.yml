@@ -1,0 +1,18 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/injection.config.dart"
+    - "**/generated/*"
+  errors:
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    always_use_package_imports: true
+    prefer_relative_imports: false
+    prefer_single_quotes: true
+    sort_pub_dependencies: true
+    non_constant_identifier_names: false
+    constant_identifier_names: false
