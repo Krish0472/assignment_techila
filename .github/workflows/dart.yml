@@ -30,13 +30,14 @@ jobs:
         with:
           flutter-version: 3.16.0
 
-
-
-
-
-
       - name: Build the APK
         env:
           APP_VERSION_CODE: 1.0.0+1
         run: flutter build apk --debug
+
+      - name: Uploading artifacts android
+        uses: actions/upload-artifact@v3
+        with:
+         name: app-release-build-artifact
+         path: build/app/outputs/flutter-apk/app-debug.apk
 
