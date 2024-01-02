@@ -20,20 +20,30 @@ jobs:
           distribution: 'temurin'
           java-version: "16.x"
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'latest'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.16.0
 
+      - name: Analyze Flutter
+        run: make flutter-analyse
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Analyze Dart
+        uses: zgosalvez/github-actions-analyze-dart@v1
+
       - name: Build the APK
         env:
           APP_VERSION_CODE: 1.0.0+1
-        run: flutter build apk --debug
+        run: flutter build apk --release
+
+      - name: Build the AAB
+        env:
+          APP_VERSION_CODE: 1.0.0+1
+        run: flutter build aab
 
       - name: Uploading artifacts android
         uses: actions/upload-artifact@v3
