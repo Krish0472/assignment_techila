@@ -35,10 +35,7 @@ jobs:
       - name: Analyze Dart
         run:  dart analyze
 
-      - name: Build the APK
-        env:
-          APP_VERSION_CODE: 1.0.0+1
-        run: flutter build apk --release
+
 
       - name: Build the AAB
         env:
