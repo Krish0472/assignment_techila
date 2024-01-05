@@ -8,7 +8,7 @@
 
     <application
         android:label="eStore"
-        android:name="eStore"
+
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

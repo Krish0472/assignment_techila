@@ -1,4 +1,4 @@
-package com.example.applicatio01statemanagment
+package com.example.assignment_techila
 
 import io.flutter.embedding.android.FlutterActivity
 
